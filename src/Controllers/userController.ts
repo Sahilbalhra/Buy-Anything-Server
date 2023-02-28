@@ -136,7 +136,7 @@ export const createUser = async (req: Request, res: Response) => {
         const hashedPassword = await bcrypt.hash(password, salt);
         const newUser = await userModel.create({
           name: `${firstName} ${lastName}`,
-          email,
+          email: email.toLowerCase(),
           password: hashedPassword,
         });
         const token = jwt.sign(
